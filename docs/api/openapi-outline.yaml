@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: AffiliateFlow AI API
+  version: 0.1.0
+  description: Initial API contract outline. Codex must complete schemas, security and responses.
+servers:
+  - url: http://localhost:8000/api/v1
+security:
+  - bearerAuth: []
+paths:
+  /products:
+    get:
+      summary: List products
+      responses:
+        "200": { description: Product list }
+    post:
+      summary: Submit affiliate product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [affiliate_url]
+              properties:
+                affiliate_url: { type: string, format: uri }
+                name: { type: string }
+                category: { type: string }
+                user_notes: { type: string }
+      responses:
+        "201": { description: Product submitted }
+        "422": { description: Invalid input }
+  /products/{productId}:
+    get:
+      summary: Get product profile and sources
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200": { description: Product profile }
+  /products/{productId}/research:
+    post:
+      summary: Request product research
+      responses:
+        "202": { description: Research queued }
+  /campaigns:
+    post:
+      summary: Create campaign
+      responses:
+        "201": { description: Campaign created }
+  /campaigns/{campaignId}/content:
+    post:
+      summary: Generate content brief
+      responses:
+        "202": { description: Content generation queued }
+  /content/{contentId}/versions:
+    get:
+      summary: List immutable content versions
+      responses:
+        "200": { description: Version list }
+  /content-versions/{versionId}/qa:
+    post:
+      summary: Run deterministic and AI quality checks
+      responses:
+        "202": { description: QA queued }
+  /content-versions/{versionId}/approvals:
+    post:
+      summary: Approve or reject a version for a specific account
+      responses:
+        "201": { description: Decision recorded }
+  /publications:
+    post:
+      summary: Schedule an approved content version
+      responses:
+        "202": { description: Publication scheduled }
+  /social-accounts:
+    get:
+      summary: List connected social accounts
+      responses:
+        "200": { description: Account list }
+  /analytics/overview:
+    get:
+      summary: Get analytics overview
+      responses:
+        "200": { description: Analytics overview }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: SanctumToken

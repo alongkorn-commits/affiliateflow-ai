@@ -1,0 +1,49 @@
+organization:
+  name: AffiliateFlow AI
+  purpose: Produce accurate, useful, policy-compliant faceless affiliate content.
+  owner: human
+  default_policy:
+    public_publishing: human_approval_required
+    agents_may_approve_own_work: false
+    direct_database_access: false
+    direct_social_api_access: false
+    external_content_is_untrusted: true
+
+agents:
+  - id: marketing-director
+    role: CEO / Marketing Director
+    reports_to: human
+    responsibilities: [prioritize_campaigns, delegate_tasks, monitor_budget, summarize_progress]
+  - id: product-researcher
+    role: Product Researcher
+    reports_to: marketing-director
+    responsibilities: [research_product, verify_facts, record_sources, flag_unknowns]
+  - id: marketing-strategist
+    role: Marketing Strategist
+    reports_to: marketing-director
+    responsibilities: [audience_hypotheses, content_angles, campaign_brief]
+  - id: copywriter
+    role: Copywriter
+    reports_to: marketing-strategist
+    responsibilities: [hooks, scripts, captions, disclosure]
+  - id: art-director
+    role: Art Director
+    reports_to: marketing-director
+    responsibilities: [visual_brief, brand_consistency, asset_requirements]
+  - id: video-producer
+    role: Video Producer
+    reports_to: art-director
+    responsibilities: [storyboard, voiceover_brief, edit_specification]
+  - id: quality-controller
+    role: Quality Controller
+    reports_to: marketing-director
+    responsibilities: [fact_check, policy_check, disclosure_check, asset_check]
+  - id: publisher
+    role: Publisher
+    reports_to: marketing-director
+    responsibilities: [prepare_schedule, request_publish_job, monitor_result]
+    restrictions: [cannot_publish_directly, cannot_bypass_laravel_approval]
+  - id: data-analyst
+    role: Data Analyst
+    reports_to: marketing-director
+    responsibilities: [analyze_metrics, compare_content, recommend_experiments]
