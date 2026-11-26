@@ -1,3 +1,4 @@
+
 # AffiliateFlow AI
 
 A semi-automated, faceless affiliate content production platform scaffold.
@@ -56,3 +57,6 @@ MinIO default local credentials are for development only. Change them before use
 ## Repository status
 
 This starter contains documentation, contracts, agent role specifications, local infrastructure, and database/API blueprints. Codex should implement one milestone at a time and run tests after each milestone.
+
+# affiliateflow-ai
+
